@@ -1,0 +1,56 @@
+body {
+    background-color: #616F7C;
+    color: #fff;
+    font-family: 'Open Sans', sans-serif;
+}
+
+pre {
+    word-wrap: break-word; white-space: pre-wrap;
+}
+
+input {
+    border-radius: 8px;
+    background-image: url('images/paw.png');
+    background-repeat: no-repeat;
+    background-position: center right;
+    background-color: white;
+    height: 30px;
+    width: 100%;
+    padding-left: 4px;
+}
+
+#input {
+    margin: 0 auto;
+    width: 80%;
+    padding-top: 30px;
+}
+
+#_search { 
+    background-color: #4D5965;
+    border-radius: 30px;
+    width: 50%;
+    height: 125px;
+    margin: 0 auto;
+}
+
+#data {
+    width: 50%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+#data img { 
+    max-width: 90%;
+    max-height: 300px;
+    border: 3px solid #4D5965;
+    border-radius: 3px;
+}
+
+#loading {
+    text-align: center;
+    display: none;
+}
+
+#message {
+    padding-top:6px;
+}

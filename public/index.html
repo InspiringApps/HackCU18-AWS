@@ -1,0 +1,79 @@
+<html>
+    <head>
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+        <link rel="stylesheet" href="styles.css">
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script type="text/javascript">
+            var ajaxFunction = function(data) {
+                $.ajax({
+                    type: "get",
+                    url: "https://yi0qcyt4xg.execute-api.us-east-1.amazonaws.com/dev/search/" + data,
+                    beforeSend: function() {
+                        $("#loading").show();
+                    },
+                    success: function(data) {
+                        if ($.isEmptyObject(data)) {
+                            $('#message').html('No matches. Please try again!');
+                        } else {
+                            $("#data").html('<h1>'+ data.name + '</h1><img src='+data.imagePath+' />');
+                            $('#message').html('');
+                        }
+                    },
+                    complete: function() {
+                        $("#loading").hide();
+                    }
+                });
+            };
+            
+            $(document).ready(function(){
+                $('#search').on('keyup paste',function(){
+                    if(this.value.length >= 3){
+                        ajaxFunction(this.value);
+                    }
+                });
+            });
+            </script>
+
+    </head>
+    <body>
+        <h1>FaasCats</h1>
+        <h2>A serverless API demonstration using famous cats</h2>
+        
+        <div id="_search">
+            <div id="input">
+                <input type="text" id="search">
+                <div id="message">
+                    Start typing to search. (Example: tigger)
+                </div>
+            </div>
+            <div id="loading">
+                Loading...
+            </div>
+    
+            
+        </div>
+        
+
+        <div id="data">
+            <pre>
+                    \`*-.                    
+                    )  _`-.                 
+                    .  : `. .                
+                    : _   '  \               
+                    ; *` _.   `*-._          
+                    `-.-'          `-.       
+                        ;       `       `.     
+                        :.       .        \    
+                        . \  .   :   .-'   .   
+                        '  `+.;  ;  '      :   
+                        :  '  |    ;       ;-. 
+                        ; '   : :`-:     _.`* ;
+                    .*' /  .*' ; .*`- +'  `*' 
+                    `*-*   `*-*  `*-*'        
+                </pre>
+        </div>
+    </body>
+</html>
+
+
