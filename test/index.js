@@ -1,6 +1,10 @@
 const expect = require('chai').expect;
 const supertest = require('supertest');
+const yaml = require('js-yaml');
+const fs = require('fs');
+
 const api = supertest('https://yi0qcyt4xg.execute-api.us-east-1.amazonaws.com/dev/');
+const apiKey = yaml.safeLoad(fs.readFileSync('./env.yml', 'utf8')).API_KEY;
 
 let cat = {};
 let cat2 = {};
@@ -9,6 +13,7 @@ describe('API', () => {
     it('should allow user to create a cat', (done) => {
         api.post('cat')
             .set('Accept', 'application/json')
+            .set('api-key', apiKey)
             .send({ name: 'SampleCat', 'imagePath':'https://tests3path.com/image.jpg' })
             .expect(201)
             .end((err, res) => {
@@ -22,6 +27,7 @@ describe('API', () => {
     it('should allow user to update a cat', (done) => {
         api.put('cat')
             .set('Accept', 'application/json')
+            .set('api-key', apiKey)
             .send({ id: cat.id, name: 'SampleCat2', 'imagePath':'https://tests3path.com/image2.jpg' })
             .expect(201)
             .end((err, res) => {
@@ -46,6 +52,7 @@ describe('API', () => {
     it('should allow user to delete a cat', (done) => {
         api.delete('cat')
             .set('Accept', 'application/json')
+            .set('api-key', apiKey)
             .send({ id: cat.id })
             .expect(201)
             .end((err, res) => {

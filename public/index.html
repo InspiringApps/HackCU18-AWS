@@ -1,35 +1,49 @@
 <html>
     <head>
+        <link rel="icon" type="image/x-icon" href="images/favicon.ico">
         <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
         <link rel="stylesheet" href="styles.css">
         
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        
         <script type="text/javascript">
-            var ajaxFunction = function(data) {
+            var apiURL = "https://yi0qcyt4xg.execute-api.us-east-1.amazonaws.com/dev/search/";
+            var searchAPI = function(data) {
+                // Connect to API
                 $.ajax({
-                    type: "get",
-                    url: "https://yi0qcyt4xg.execute-api.us-east-1.amazonaws.com/dev/search/" + data,
-                    beforeSend: function() {
-                        $("#loading").show();
-                    },
+                    type: 'get',
+                    url: apiURL + data,
                     success: function(data) {
                         if ($.isEmptyObject(data)) {
-                            $('#message').html('No matches. Please try again!');
+                            printNoMatches();
                         } else {
-                            $("#data").html('<h1>'+ data.name + '</h1><img src='+data.imagePath+' />');
-                            $('#message').html('');
+                            $('#data').html('<h1>' + data.name + '</h1> <img src='+data.imagePath+ ' />');
+                            clearMessage();
                         }
-                    },
-                    complete: function() {
-                        $("#loading").hide();
                     }
                 });
             };
+
+            var printNoMatches = function() {
+                $('#message').html('No matches. Please try again!');
+            }
+
+            var clearMessage = function() {
+                $('#message').html('');
+            }
+
+            var showLoading = function() {
+                $("#loading").show();
+            }
+
+            var hideLoading = function() {
+                $("#loading").hide();
+            }
             
             $(document).ready(function(){
                 $('#search').on('keyup paste',function(){
                     if(this.value.length >= 3){
-                        ajaxFunction(this.value);
+                        searchAPI(this.value);
                     }
                 });
             });

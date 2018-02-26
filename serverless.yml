@@ -11,6 +11,7 @@ service: hackCU
 # Configuration variables
 custom:
   CATS_TABLE: faasCats
+  API_KEY: ${file(env.yml):API_KEY}
 
 # The `provider` block defines where your service will be deployed
 provider:
@@ -21,6 +22,7 @@ provider:
   region: us-east-1
   environment:
     CATS_TABLE: ${self:custom.CATS_TABLE}
+    API_KEY: ${self:custom.API_KEY}
 
   iamRoleStatements:
     - Effect: Allow

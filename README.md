@@ -44,6 +44,10 @@ Create a free AWS account at https://aws.amazon.com/free/
 
 Follow the instructions at https://serverless.com/framework/docs/providers/aws/guide/credentials/ to create and use your AWS Security Keys.
 
+#### Create an API Key
+
+Rename envSAMPLE.yml to env.yml and replace the sample API key with your own.
+
 ## Deployment
 
 To deploy this code to AWS, navigate to the project directory and
@@ -58,6 +62,12 @@ To deploy this code to AWS, navigate to the project directory and
 
 - Edit the ```index.html``` file under the /public subdirectory. Change the URL to the GET endpoint from the serverless deployment command above.
 - Upload the file to an S3 bucket. The file should be marked as Public when you upload it.
+
+## Demo
+
+https://s3.amazonaws.com/catcu-web/index.html
+
+This demo page will allow you to return results of a search from the API. Further adjustments can be made that take advantage of the other API endpoints. For example, a form can be added to add or update items. Another can be added to delete results. Of course, you want to be thoughtful about which endpoints are open to the general public!
 
 ## Additional Resources
 

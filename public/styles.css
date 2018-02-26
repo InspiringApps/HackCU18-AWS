@@ -4,6 +4,16 @@ body {
     font-family: 'Open Sans', sans-serif;
 }
 
+h1 {
+    text-align: center;
+    margin-bottom: 4px;
+}
+
+h2 {
+    text-align: center;
+    margin-top: 0;
+}
+
 pre {
     word-wrap: break-word; white-space: pre-wrap;
 }
